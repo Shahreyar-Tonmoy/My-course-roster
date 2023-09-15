@@ -2,6 +2,7 @@
 import Card from './components/Card'
 import Header from './components/Header'
 import './App.css'
+import Cart from './components/Cart'
 
 
 function App() {
@@ -12,8 +13,10 @@ function App() {
    
    
    <Header></Header>
-   <Card className="grid grid-cols-3"></Card>
-    
+   <div className='max-w-screen-xl mx-auto lg:flex gap-6'>
+   <Card></Card>
+   <Cart></Cart> 
+   </div>
    
                    
         
