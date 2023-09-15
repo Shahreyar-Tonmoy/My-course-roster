@@ -15,7 +15,7 @@ function App() {
    
    <ToastContainer></ToastContainer>
    <Header></Header>
-   <div className='max-w-screen-xl mx-auto lg:flex gap-6'>
+   <div className='max-w-screen-xl mx-auto md:flex lg:flex gap-6'>
    <Card></Card>
    
     
