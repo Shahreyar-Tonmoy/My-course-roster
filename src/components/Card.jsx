@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useEffect } from "react";
 import Cart from "./Cart";
@@ -9,6 +10,9 @@ import 'react-toastify/dist/ReactToastify.css';
 const Card = () => {
     const [allcard, setCard] = useState([])
     const [selectInfo, setSelectInfo] = useState([])
+    const [totalCredit, setTotalCredit] = useState(0)
+    const [totalRemainng, setRemainng] = useState(0)
+    const [totalPrice, setTotalPrice] = useState(0)
     useEffect(() => {
         fetch("course.json")
             .then((res) => res.json())
@@ -19,15 +23,46 @@ const Card = () => {
 
     const hendleSelect = (Cardinfo) => {
         const isExist = selectInfo.find((info) => info.id == Cardinfo.id)
-        if(isExist){
+
+
+        let count = Cardinfo.Credit
+        if (isExist) {
             // eslint-disable-next-line no-undef
             toast("Already Exist")
         }
-        else{
-            setSelectInfo([...selectInfo, Cardinfo])
+        else {
+
+            selectInfo.forEach((info) => {
+                count = count + info.Credit
+
+            })
+
+
+
+            let totalPrice = Cardinfo.price
+            selectInfo.forEach((totalCost) => {
+                totalPrice += totalCost.price
+            })
+
+            
+
+
+
+            const Remainng = 20 - count
+            if (count > 20) {
+                toast("Credit Time Over")
+            }
+            else {
+                setTotalPrice(totalPrice)
+                setTotalCredit(count)
+                setRemainng(Remainng)
+                setSelectInfo([...selectInfo, Cardinfo])
+            }
+
         }
-        
-        
+        console.log(totalCredit)
+
+
     }
     // console.log(selectInfo)
 
@@ -52,12 +87,12 @@ const Card = () => {
                                 </div>
                                 <div className="flex gap-[3px]">
                                     <img src="../src/assets/Frame.png" alt="" />
-                                    <h2 className="font-medium text-[#00000086]">Credit : {allcard.Credit}</h2>
+                                    <h2 className="font-medium text-[#00000086]">Credit : {allcard.Credit}hr</h2>
                                 </div>
 
                             </div>
                             <div className="-ml-2 mt-6">
-                                <button onClick={()=> hendleSelect(allcard)} className="btn text-white bg-[#2F80ED] hover:bg-[#006eff] px-[110px] rounded-lg">Select</button>
+                                <button onClick={() => hendleSelect(allcard)} className="btn text-white bg-[#2F80ED] hover:bg-[#006eff] px-[110px] rounded-lg">Select</button>
 
                             </div>
 
@@ -66,7 +101,7 @@ const Card = () => {
                 ))}
 
             </div>
-            <Cart selectInfo={selectInfo}></Cart>
+            <Cart selectInfo={selectInfo} totalRemainng={totalRemainng} totalCredit={totalCredit} totalPrice={totalPrice}></Cart>
             <ToastContainer></ToastContainer>
 
 
