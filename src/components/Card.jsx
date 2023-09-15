@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import Cart from "./Cart";
+// eslint-disable-next-line no-unused-vars
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Card = () => {
-    const [card, setCard] = useState([])
+    const [allcard, setCard] = useState([])
+    const [selectInfo, setSelectInfo] = useState([])
     useEffect(() => {
         fetch("course.json")
             .then((res) => res.json())
@@ -12,37 +17,47 @@ const Card = () => {
     }, [])
     // console.log(card)
 
-    const hendleSelect = () => {
-        console.log("okkkkk")
+    const hendleSelect = (Cardinfo) => {
+        const isExist = selectInfo.find((info) => info.id == Cardinfo.id)
+        if(isExist){
+            // eslint-disable-next-line no-undef
+            toast("Already Exist")
+        }
+        else{
+            setSelectInfo([...selectInfo, Cardinfo])
+        }
+        
+        
     }
+    // console.log(selectInfo)
 
 
     return (
 
         <>
             <div className="grid mb-24 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {card.map((card, idx) => (
-                    <div key={idx} className="card mx-auto w-80 bg-base-100 shadow-xl">
+                {allcard.map((allcard, idx) => (
+                    <div key={idx} className="card mx-auto w-[330px] bg-base-100 shadow-xl">
                         <figure className=" pt-10">
-                            <img src={card.cover} alt="" />
+                            <img src={allcard.cover} alt="" />
                         </figure>
                         <div className="card-body items-start ">
-                            <h2 className="text-[18px] font-semibold">{card.title}</h2>
-                            <p className="text-[14px] text-[#00000086] mt-3">{card.description}</p>
+                            <h2 className="text-[18px] font-semibold">{allcard.title}</h2>
+                            <p className="text-[14px] text-[#00000086] mt-3">{allcard.description}</p>
 
                             <div className="flex gap-2 mt-3 ">
                                 <div className="flex gap-[3px]">
                                     <img src="../src/assets/dollar-sign 1.png" alt="" />
-                                    <h2 className="font-medium text-[#00000086]">Price : {card.price}</h2>
+                                    <h2 className="font-medium text-[#00000086]">Price : {allcard.price}</h2>
                                 </div>
                                 <div className="flex gap-[3px]">
                                     <img src="../src/assets/Frame.png" alt="" />
-                                    <h2 className="font-medium text-[#00000086]">Credit : {card.Credit}</h2>
+                                    <h2 className="font-medium text-[#00000086]">Credit : {allcard.Credit}</h2>
                                 </div>
 
                             </div>
                             <div className="-ml-2 mt-6">
-                                <button onClick={hendleSelect} className="btn text-white bg-[#2F80ED] hover:bg-[#006eff] px-[110px] rounded-lg">Select</button>
+                                <button onClick={()=> hendleSelect(allcard)} className="btn text-white bg-[#2F80ED] hover:bg-[#006eff] px-[110px] rounded-lg">Select</button>
 
                             </div>
 
@@ -51,6 +66,8 @@ const Card = () => {
                 ))}
 
             </div>
+            <Cart selectInfo={selectInfo}></Cart>
+            <ToastContainer></ToastContainer>
 
 
         </>
