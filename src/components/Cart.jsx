@@ -6,7 +6,8 @@ const Cart = ({ selectInfo,totalRemainng,totalCredit,totalPrice }) => {
     // eslint-disable-next-line react/prop-types
     console.log(selectInfo)
     return (
-        <div className="lg:-mr-14"> 
+        <div className="md:justify-center md:flex md:mb-12">
+            <div className="lg:-mr-14"> 
             <div className="card w-[280px]  mx-auto md:mx-0 lg:mx-0  bg-base-100 shadow-2xl ">
 
                 <div className="card-body px-4">
@@ -21,13 +22,14 @@ const Cart = ({ selectInfo,totalRemainng,totalCredit,totalPrice }) => {
 
                     </div>
                     <hr className="mt-6 border border-[#0000001e]"></hr>
-                    <h1 className="mt-4 font-medium">Total Credit Hour : {totalCredit}</h1>
+                    <h1 className="mt-4 font-medium">Total Credit Hour : {totalCredit} hr</h1>
                     <hr className="mt-4 border border-[#0000001e]"></hr>
                     <h1 className="font-semibold">Total Price : {totalPrice} USD</h1>
                 </div>
 
 
             </div>
+        </div>
         </div>
     );
 };

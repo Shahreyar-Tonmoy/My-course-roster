@@ -5,13 +5,14 @@ import Cart from "./Cart";
 // eslint-disable-next-line no-unused-vars
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { FiDollarSign,FiBookOpen } from 'react-icons/fi';
 
 
 const Card = () => {
     const [allcard, setCard] = useState([])
     const [selectInfo, setSelectInfo] = useState([])
     const [totalCredit, setTotalCredit] = useState(0)
-    const [totalRemainng, setRemainng] = useState(0)
+    const [totalRemainng, setRemainng] = useState(20)
     const [totalPrice, setTotalPrice] = useState(0)
     useEffect(() => {
         fetch("course.json")
@@ -80,13 +81,13 @@ const Card = () => {
                             <h2 className="text-[18px] font-semibold">{allcard.title}</h2>
                             <p className="text-[14px] text-[#00000086] mt-3">{allcard.description}</p>
 
-                            <div className="flex gap-2 mt-3 ">
-                                <div className="flex gap-[3px]">
-                                    <img src="../src/assets/dollar-sign 1.png" alt="" />
+                            <div className="flex gap-6 mt-3 ">
+                                <div className="flex gap-[3px] items-center">
+                                    <FiDollarSign className="w-5 h-5 text-[#00000086]"></FiDollarSign>
                                     <h2 className="font-medium text-[#00000086]">Price : {allcard.price}</h2>
                                 </div>
-                                <div className="flex gap-[3px]">
-                                    <img src="../src/assets/Frame.png" alt="" />
+                                <div className="flex gap-[3px] items-center">
+                                    <FiBookOpen className="w-5 h-5 text-[#00000086]"></FiBookOpen>
                                     <h2 className="font-medium text-[#00000086]">Credit : {allcard.Credit}hr</h2>
                                 </div>
 
