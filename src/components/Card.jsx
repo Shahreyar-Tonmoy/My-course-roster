@@ -61,7 +61,7 @@ const Card = () => {
             }
 
         }
-        console.log(totalCredit)
+        // console.log(totalCredit)
 
 
     }
@@ -73,7 +73,7 @@ const Card = () => {
         <>
             <div className="grid mb-24 gap-6 md:flex md:flex-wrap  md:px-10 lg:grid-cols-3 lg:grid lg:gap-6 lg:px-0">
                 {allcard.map((allcard, idx) => (
-                    <div key={idx} className="card mx-auto w-[330px] bg-base-100 shadow-xl">
+                    <div key={idx} className="card mx-auto w-[325px] bg-base-100 shadow-xl">
                         <figure className=" pt-10">
                             <img src={allcard.cover} alt="" />
                         </figure>

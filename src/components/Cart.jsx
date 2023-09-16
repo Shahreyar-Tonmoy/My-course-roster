@@ -7,7 +7,7 @@ const Cart = ({ selectInfo,totalRemainng,totalCredit,totalPrice }) => {
     console.log(selectInfo)
     return (
         <div className="md:justify-center md:flex mb-12 lg:mb-0">
-            <div className="lg:-mr-14"> 
+            <div className="lg:-mr-6"> 
             <div className="card w-[280px]  mx-auto md:mx-0 lg:mx-0  bg-base-100 shadow-2xl ">
 
                 <div className="card-body px-4">
